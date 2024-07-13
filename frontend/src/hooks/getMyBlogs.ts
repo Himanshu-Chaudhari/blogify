@@ -14,7 +14,7 @@ export const GetMyBlogs=()=>{
     const [blogs , setBlogs]=useState<postInterface[]>([])
     const [loading , setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/myBlogs/`,{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/myBlogs/`,{
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }

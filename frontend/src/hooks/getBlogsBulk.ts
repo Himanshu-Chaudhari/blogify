@@ -14,7 +14,7 @@ export function getBlogsBulk() {
     const [blogs , setBlogs]=useState<postInterface[]>([])
     const [loading , setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/bulk/`,{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/bulk/`,{
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }

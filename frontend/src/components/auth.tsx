@@ -17,7 +17,7 @@ export default function Auth({type}:{type:'Sign Up' | 'Sign In'}){
     })
     const sendSignupRequest= async ()=>{
         try{
-            const response=await axios.post(`${process.env.BACKEND_URL}/api/v1/user/${type ==='Sign Up'?'signup':'signin'}`, postInput)
+            const response=await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${type ==='Sign Up'?'signup':'signin'}`, postInput)
             const jwt=response.data.token
             if(!jwt){
                 alert("Check Your Credentials")

@@ -12,7 +12,7 @@ export const GetQuote=()=>{
         a : "Jason Chatfiel"
     }]);
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/quotes`).then((res)=>{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/quotes`).then((res)=>{
             setQuote(res.data)
         })
     },[])

@@ -21,7 +21,7 @@ export function getSpecificBlogs(id : string|undefined) {
     })
     const [loading , setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/${id}`,{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${id}`,{
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }
