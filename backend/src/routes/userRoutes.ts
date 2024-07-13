@@ -19,14 +19,15 @@ userRouter.post('/signup',async (c)=>{
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
-  
     const body=await c.req.json();
+    console.log(body)
     try{
       userSignupSchema.parse(body)
-    }catch(err){
+    }catch(err : any){
+        c.status(400)
+        console.log(err)
       return c.json({err})
     }
-  
     try{
         const user= await prisma.user.create({
             data: {
@@ -35,9 +36,10 @@ userRouter.post('/signup',async (c)=>{
             password : body.password
             }
         })
-        const token =await sign({ id :user.id } , c.env.JWT_SECRET)
+        const token =await sign({ id :user.id , exp: Math.floor(Date.now() / 1000) + 60 * 30} , c.env.JWT_SECRET, )
+        console.log("this is",token)
         c.status(200)
-        return c.json({'message' : 'User created','token':token})
+        return c.json({'message' : 'User created','token':token,})
     }catch(err){
       c.status(500)
       return c.json({'message' : JSON.stringify(err)})
@@ -47,16 +49,9 @@ userRouter.post('/signup',async (c)=>{
 userRouter.post('/signin',async (c)=>{
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
-    }).$extends(withAccelerate())
-  
-    const body =await c.req.json()
-    const password=c.req.header('password');
-    const email=c.req.header('email');
-    if(!email || !password){
-        c.status(404)
-        return c.json({'message' : 'Invalid Input'})
-    }
+    }).$extends(withAccelerate()) 
     try{
+        const body =await c.req.json()
       userSigninSchema.parse(body)
       const user=await prisma.user.findUnique({
         where:{
@@ -67,7 +62,7 @@ userRouter.post('/signin',async (c)=>{
     if(!user){
         return c.json({'message' : 'No user found'})
     }
-        const token =await sign({id :user.id},c.env.JWT_SECRET)
+        const token =await sign({id :user.id , exp: Math.floor(Date.now() / 1000) + 60 * 30},c.env.JWT_SECRET)
         c.status(200)
         return c.json({'message' : 'User found','token':token})
     }catch(error: any){
