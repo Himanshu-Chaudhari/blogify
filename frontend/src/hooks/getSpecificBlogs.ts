@@ -1,6 +1,5 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
-import { BACKEND_URL } from '../config'
 
 interface postInterface{
     title : String,
@@ -22,7 +21,7 @@ export function getSpecificBlogs(id : string|undefined) {
     })
     const [loading , setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`,{
+        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/${id}`,{
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }

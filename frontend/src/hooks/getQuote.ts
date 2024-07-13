@@ -1,8 +1,6 @@
 
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { BACKEND_URL } from '../config'
-
 export interface quote {
     q:string,
     a:string
@@ -14,7 +12,7 @@ export const GetQuote=()=>{
         a : "Jason Chatfiel"
     }]);
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/quotes`).then((res)=>{
+        axios.get(`${process.env.BACKEND_URL}/quotes`).then((res)=>{
             setQuote(res.data)
         })
     },[])

@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Appbar from "./appbar";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 export default function BlogEditor() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -12,7 +11,7 @@ export default function BlogEditor() {
             alert(" Improper Input ")
             return 
         }
-        axios.post(BACKEND_URL+"/api/v1/blog",{
+        axios.post(process.env.BACKEND_URL+"/api/v1/blog",{
             "title":title,
             "content":content
         },{

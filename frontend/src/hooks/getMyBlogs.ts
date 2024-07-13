@@ -1,7 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { BACKEND_URL } from '../config'
-
 interface postInterface{
     title : String,
     content : String,
@@ -16,7 +14,7 @@ export const GetMyBlogs=()=>{
     const [blogs , setBlogs]=useState<postInterface[]>([])
     const [loading , setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/api/v1/blog/myBlogs/`,{
+        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/myBlogs/`,{
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }

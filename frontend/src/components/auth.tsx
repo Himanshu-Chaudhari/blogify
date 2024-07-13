@@ -4,7 +4,6 @@ import { Link , useNavigate } from 'react-router-dom'
 import Quote from './quote'
 import { UserSignupSchema } from '@himanshuchaudhari/mediumwebsite-common'
 import axios from 'axios'
-import {BACKEND_URL} from '../config'
 import {useSetRecoilState} from "recoil"
 import {userName} from "../App"
 
@@ -18,7 +17,7 @@ export default function Auth({type}:{type:'Sign Up' | 'Sign In'}){
     })
     const sendSignupRequest= async ()=>{
         try{
-            const response=await axios.post(`${BACKEND_URL}/api/v1/user/${type ==='Sign Up'?'signup':'signin'}`, postInput)
+            const response=await axios.post(`${process.env.BACKEND_URL}/api/v1/user/${type ==='Sign Up'?'signup':'signin'}`, postInput)
             const jwt=response.data.token
             if(!jwt){
                 alert("Check Your Credentials")
