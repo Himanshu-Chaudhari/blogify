@@ -1,7 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { BACKEND_URL } from '../config'
-
 interface postInterface{
     title : String,
     content : String,
@@ -16,7 +14,7 @@ export function getBlogsBulk() {
     const [blogs , setBlogs]=useState<postInterface[]>([])
     const [loading , setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/api/v1/blog/bulk/`,{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/bulk/`,{
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('token')}`
             }

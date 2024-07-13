@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Appbar from "./appbar";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 export default function BlogEditor() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -12,7 +11,7 @@ export default function BlogEditor() {
             alert(" Improper Input ")
             return 
         }
-        axios.post(BACKEND_URL+"/api/v1/blog",{
+        axios.post(import.meta.env.VITE_BACKEND_URL+"/api/v1/blog",{
             "title":title,
             "content":content
         },{
@@ -20,7 +19,8 @@ export default function BlogEditor() {
                 'Authorization': 'Bearer '+localStorage.getItem('token')
             }
         }).then((res)=>{
-            alert(res.data)
+            alert("Blog created");
+            console.log(res.data)
         })
         console.log("Hello")
     }
