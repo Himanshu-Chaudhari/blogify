@@ -1,3 +1,4 @@
+import axios from "axios";
 import Appbar from "../components/appbar";
 import BlogCard from "../components/blogCard";
 import Loader from "../components/loader";
@@ -14,6 +15,20 @@ export interface postInterface {
 }
 export default function MyBlogs() {
     const { loading, blogs } = GetMyBlogs()
+
+    const deleteBlog=(id : String)=>{
+        console.log(id)
+        axios.delete(import.meta.env.VITE_BACKEND_URL+`/api/v1/blog/${id}`,{
+            headers: {
+                'Authorization': 'Bearer '+localStorage.getItem('token')
+            }
+        }).then((res)=>{
+            alert("Blog Deleted")
+            window.location.reload();
+            console.log(res);
+        })
+    }
+
     if (loading) {
         return (
             <>
@@ -45,7 +60,12 @@ export default function MyBlogs() {
                     {
                         blogs.map((element: postInterface, index) => {
                             return <>
-                                <BlogCard key={index} id={element.id} title={element.title} content={element.content} created={element.created} author={element.author} ></BlogCard>
+                                <div className="flex">
+                                    <BlogCard key={index} id={element.id} title={element.title} content={element.content} created={element.created} author={element.author} ></BlogCard>
+                                    <div className="m-4">
+                                        <button onClick={()=>deleteBlog(element.id)} className="bg-white border border-gray-300 rounded-md shadow-sm block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100">DELETE</button>
+                                    </div>
+                                </div>
                             </>
                         })
                     }

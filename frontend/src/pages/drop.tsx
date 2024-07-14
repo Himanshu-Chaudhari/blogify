@@ -36,12 +36,12 @@ export default function Drop() {
             </div>
             <div className="flex flex-col min-w-full min-h-screen object-cover bg-[url('/pexels-photo-743986.webp')] w-full h-[250px] bg-cover bg-center bg-no-repeat md:h-[350px]">
                 <div className="flex flex-col justify-center container text-center">
-                    <h1 className="p-6 flex justify-center  text-6xl font-bold">
+                    <h1 className="p-6 flex justify-center text-5xl font-bold">
                         Stories, Ideas and Experiences
                     </h1>
                     <div className="mt-20 flex flex-row justify-center">
                         <div className="p-4 max-w-lg ">
-                            <div className="text-4xl font-bold mb-4">
+                            <div className="text-2xl font-bold mb-4">
                                 {quote[0].q}
                             </div>
                             <div className="text-xl font-semibold">
