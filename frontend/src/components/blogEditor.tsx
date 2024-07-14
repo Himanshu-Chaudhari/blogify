@@ -1,10 +1,11 @@
 import { useState } from "react"
 import Appbar from "./appbar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function BlogEditor() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    
+    const navigate=useNavigate()
     const postABlog=(e : React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
         e.preventDefault()
         if(title.length<1 || content.split(' ').length<10){
@@ -20,6 +21,7 @@ export default function BlogEditor() {
             }
         }).then((res)=>{
             alert("Blog created");
+            navigate('/blogs');
             console.log(res.data)
         })
         console.log("Hello")

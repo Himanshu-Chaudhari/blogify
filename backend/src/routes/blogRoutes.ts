@@ -33,6 +33,28 @@ blogRouter.use('/*',async(c,next)=>{
     }
     await next();
 })
+
+blogRouter.delete('/:id',async (c)=>{
+    const prisma= new PrismaClient({
+        datasourceUrl : c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+    try{
+        await prisma.post.delete({
+            where :{
+                id : c.req.param('id')
+            }
+        })
+        return c.json({
+            "message" : "Blog deleted"
+        });
+    }catch(error){
+        return c.json({
+            error : error
+        });
+    }finally {
+        await prisma.$disconnect();
+    }
+})
   
 blogRouter.post('/',async (c)=>{
     const prisma= new PrismaClient({
