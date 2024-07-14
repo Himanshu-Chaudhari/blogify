@@ -11,7 +11,7 @@ interface postInput {
 }
 export default function BlogCard(blogInput: postInput) {
     return (
-        <div className="m-4  bg-white border border-gray-200 rounded-lg shadow">
+        <div className="m-4  bg-white border border-gray-200 rounded-lg shadow w-11/12">
             <div id="defaultTabContent">
                 <div className="p-4 bg-white rounded-lg md:p-8" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b  rounded-t-lg " id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
