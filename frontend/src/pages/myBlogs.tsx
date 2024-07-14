@@ -3,6 +3,7 @@ import Appbar from "../components/appbar";
 import BlogCard from "../components/blogCard";
 import Loader from "../components/loader";
 import { GetMyBlogs } from "../hooks/getMyBlogs";
+import { useNavigate } from "react-router-dom";
 
 export interface postInterface {
     title: String,
@@ -15,7 +16,7 @@ export interface postInterface {
 }
 export default function MyBlogs() {
     const { loading, blogs } = GetMyBlogs()
-
+    const navigate=useNavigate()
     const deleteBlog=(id : String)=>{
         console.log(id)
         axios.delete(import.meta.env.VITE_BACKEND_URL+`/api/v1/blog/${id}`,{
@@ -24,11 +25,10 @@ export default function MyBlogs() {
             }
         }).then((res)=>{
             alert("Blog Deleted")
-            window.location.reload();
+            navigate('/blogs')
             console.log(res);
         })
     }
-
     if (loading) {
         return (
             <>
