@@ -51,6 +51,8 @@ export default function Drop() {
                         <div className="hidden lg:block text-2xl max-w-2xl p-10">
                             Join our community of passionate writers and readers today. Start writing your own blog posts,
                             discover content from other creators, and engage with a like-minded community.
+                            <br /><br />
+                        <button onClick={()=>navigate('/signup')}>Get Started &rArr;</button>
                         </div>
                     </div>
                     
