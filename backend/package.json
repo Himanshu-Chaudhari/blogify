@@ -4,7 +4,6 @@
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
-    "@himanshuchaudhari/medium-common": "^1.0.0",
     "@himanshuchaudhari/mediumwebsite-common": "^1.0.0",
     "@prisma/extension-accelerate": "^1.1.0",
     "cors": "^2.8.5",
